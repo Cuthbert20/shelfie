@@ -15,6 +15,7 @@ app.get('/api/things', ctrl.getThings)
 app.post('/api/things', ctrl.newThing)
 app.get('/api/things/:id', ctrl.oneThing)
 app.delete('/api/things/:id', ctrl.deleteThing)
+app.put('/api/things/:id', ctrl.updateThing)
 
 massive(CONNECTION_STRING)
 .then(dbInstance => {

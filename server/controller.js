@@ -1,7 +1,7 @@
 module.exports = {
     getThings: async (req,res) => {
         const db = req.app.get('db')
-        //when using async await we have to assign the get_all_things() to a variable, in this case allThings
+        //when using async await we have to assign the invoked sql file to a variable, in this case allThings
         let allThings = await db.get_all_things()
         res.status(200).send(allThings)
     },
@@ -32,5 +32,19 @@ module.exports = {
         .catch(hi => {
             res.status(500).send(hi)
         })
+    },
+    updateThing: async (req,res) => {
+        const db = req.app.get('db')
+
+        //destructring name, price, img
+        //console.log(req.body)
+        
+        const { names,price,img } = req.body
+        const { id } = req.params
+        console.log('req.body', req.body)
+        console.log("id", id, req.params)
+        const updateThing = await db.update_thing({names,price,img,id})
+        res.status(200).send(updateThing)
+        
     }
 }
