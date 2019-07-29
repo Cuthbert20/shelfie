@@ -39,11 +39,11 @@ module.exports = {
         //destructring name, price, img
         //console.log(req.body)
         
-        const { names,price,img } = req.body
+        const { thing_name, thing_price, thing_img } = req.body
         const { id } = req.params
         console.log('req.body', req.body)
-        console.log("id", id, req.params)
-        const updateThing = await db.update_thing({names,price,img,id})
+        console.log("id", id)
+        const updateThing = await db.update_thing({thing_name, thing_price, thing_img, id})
         res.status(200).send(updateThing)
         
     }
